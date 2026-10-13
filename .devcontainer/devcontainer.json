@@ -11,5 +11,8 @@
             ]
         }
     },
+    "features": {
+        "ghcr.io/swift-server-community/swift-devcontainer-features/sqlite:1": {}
+    }
     // "remoteUser": "root"
 }
