@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if autor_seleccionado %}Entradas de {{ autor_seleccionado.nombre }}{% else %}Entradas del blog{% endif %}</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Arial, sans-serif;
+            color: #243447;
+            background: #f4f7fb;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        main {
+            width: min(90%, 850px);
+            margin: 0 auto;
+            padding: 48px 0;
+        }
+
+        header {
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: #173b63;
+        }
+
+        .subtitulo {
+            color: #64748b;
+        }
+
+        .entrada {
+            margin-bottom: 20px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgb(23 59 99 / 8%);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #1d5d94;
+        }
+
+        .autor {
+            color: #26734d;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .autor:hover {
+            text-decoration: underline;
+        }
+
+        .fecha {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1d5d94;
+            text-decoration: none;
+        }
+
+        .vacio {
+            padding: 20px;
+            border-radius: 8px;
+            background: #e8f0f8;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            {% if autor_seleccionado %}
+                <a class="volver" href="{% url 'lista_entradas' %}">← Ver todas las entradas</a>
+                <h1>Entradas de {{ autor_seleccionado.nombre }}</h1>
+                <p class="subtitulo">Todas las publicaciones de este autor.</p>
+            {% else %}
+                <h1>Entradas del blog</h1>
+                <p class="subtitulo">Descubre nuestras publicaciones y sus autores.</p>
+            {% endif %}
+        </header>
+
+        {% for entrada in entradas %}
+            <article class="entrada">
+                <h2>{{ entrada.titulo }}</h2>
+                <p>{{ entrada.contenido }}</p>
+                <p>
+                    Autor:
+                    <a class="autor" href="{% url 'entradas_por_autor' entrada.autor.id %}">
+                        {{ entrada.autor.nombre }}
+                    </a>
+                </p>
+                <p class="fecha">Publicado el {{ entrada.fecha_publicacion|date:"d/m/Y H:i" }}</p>
+            </article>
+        {% empty %}
+            <p class="vacio">Este autor todavía no tiene entradas publicadas.</p>
+        {% endfor %}
+    </main>
+</body>
+
+</html>
