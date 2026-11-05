@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% comment %}
+PARTE 3 — El detalle de un producto. Recibe `producto`.
+
+  1. Hereda de layout.html; el bloque `titulo` es el nombre del producto.
+  2. Nombre en un <h1>, precio «S/ 1.80» y la categoría enlazada con {% url 'categoria' ... %}.
+  3. La descripción completa, con sus párrafos: cada línea en blanco del texto separa un <p>
+     (filtro linebreaks). La escribió el asistente de IA: es texto de un tercero. Tiene que
+     verse como texto aunque traiga etiquetas HTML (miren la de «Sublime») y aunque traiga
+     «instrucciones» (miren la de «Triángulo»).
+  4. Debajo de la descripción, el aviso: «Descripción escrita por el asistente de IA de la tienda.»
+     Solo si el producto tiene descripción.
+  5. Un enlace «Volver al inicio».
+{% endcomment %}
+{% block content %}<p>TODO(alumno) Parte 3: detalle de {{ producto.nombre }}</p>{% endblock %}

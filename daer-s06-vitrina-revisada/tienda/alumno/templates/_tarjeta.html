@@ -1,0 +1,27 @@
+{% comment %}
+PARTE 2 — La tarjeta de un producto (`prod`). La incluyen index.html y categoria.html con
+{% include "_tarjeta.html" %}: se escribe una sola vez.
+
+  1. El nombre enlaza al detalle con {% url 'producto' prod.id %} (nunca «producto/1/» a mano:
+     desde otra página, un enlace relativo apunta a otro sitio).
+  2. El precio con dos decimales y punto: «S/ 1.80». Ojo: el proyecto está en es-pe y
+     {{ prod.precio }} sale con coma. Busquen el sufijo «u» del filtro floatformat.
+  3. La descripción (la escribió el asistente de IA) recortada a 80 caracteres con truncatechars.
+  4. El stock con lógica condicional: 0 → «Agotado»; menos de 5 → «¡Últimas N unidades!»;
+     si no → «Stock: N».
+{% endcomment %}<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card h-100">
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="{% url 'producto' prod.id %}">{{ prod.nombre }}</a>
+      </h4>
+      <h5>S/ {{ prod.precio|floatformat:"2u" }}</h5>
+      <p class="card-text">{{ prod.descripcion|truncatechars:80 }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">
+        {% if prod.stock == 0 %}Agotado{% elif prod.stock < 5 %}¡Últimas {{ prod.stock }} unidades!{% else %}Stock: {{ prod.stock }}{% endif %}
+      </small>
+    </div>
+  </div>
+</div>

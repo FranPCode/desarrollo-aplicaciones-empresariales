@@ -1,0 +1,45 @@
+{# Plantilla escrita por un asistente de IA a partir del enunciado. No la edites: es la Parte 4.
+   Para corregirla: python manage.py duelo --iniciar-corregida y edita tienda/corregida/templates/. #}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block titulo %}Inicio{% endblock %} · Vitrina</title>
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/shop.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Vitrina</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <h1 class="my-4">Tienda</h1>
+          <div class="list-group">
+            {% for cat in categorias %}
+              <a href="{% url 'categoria' cat.id %}"
+                 class="list-group-item{% if cat.id == categoria.id %} active{% endif %}">{{ cat.nombre }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-lg-9">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Vitrina · Lab extra S06</p>
+      </div>
+    </footer>
+
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

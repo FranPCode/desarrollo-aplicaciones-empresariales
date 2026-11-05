@@ -1,0 +1,20 @@
+{# Plantilla escrita por un asistente de IA a partir del enunciado. No la edites: es la Parte 4.
+   Para corregirla: python manage.py duelo --iniciar-corregida y edita tienda/corregida/templates/. #}
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card h-100">
+    <div class="card-body">
+      <h4 class="card-title"><a href="producto/{{ prod.id }}/">{{ prod.nombre }}</a></h4>
+      <h5>S/ {{ prod.precio|floatformat:"2u" }}</h5>
+      <p class="card-text">{{ prod.descripcion|truncatechars:80 }}</p>
+    </div>
+    <div class="card-footer">
+      {% if prod.stock == 0 %}
+        <small class="text-danger">Agotado</small>
+      {% elif prod.stock < 5 %}
+        <small class="text-warning">¡Últimas {{ prod.stock }} unidades!</small>
+      {% else %}
+        <small class="text-muted">Stock: {{ prod.stock }}</small>
+      {% endif %}
+    </div>
+  </div>
+</div>

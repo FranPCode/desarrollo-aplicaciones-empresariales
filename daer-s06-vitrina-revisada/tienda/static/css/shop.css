@@ -1,0 +1,15 @@
+/* Estilos propios de la vitrina (encima de Bootstrap 4). */
+body {
+  padding-top: 56px;
+}
+
+.aviso-ia {
+  font-size: 0.85rem;
+  color: #6c757d;
+  border-left: 3px solid #17a2b8;
+  padding-left: 0.5rem;
+}
+
+.descripcion p:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% comment %}
+PARTE 2 — Los productos de una categoría. Recibe `categoria` y `product_list`.
+
+  1. Hereda de layout.html; el bloque `titulo` es el nombre de la categoría, y un <h2> también.
+  2. Recorre `product_list` e incluye _tarjeta.html (la misma tarjeta que la portada).
+  3. Si la categoría no tiene productos: «No hay productos en esta categoría.» (hay una vacía: Helados).
+  4. Al pie, cuántos hay: «3 productos», «1 producto» (filtros length y pluralize).
+{% endcomment %}
+{% block titulo %}{{ categoria.nombre }}{% endblock %}
+{% block content %}
+  <h2 class="my-4">{{ categoria.nombre }}</h2>
+  <div class="row">
+    {% for prod in product_list %}
+      {% include "_tarjeta.html" %}
+    {% empty %}
+      <p class="col">No hay productos en esta categoría.</p>
+    {% endfor %}
+  </div>
+  {% if product_list %}
+    <p class="text-muted">{{ product_list|length }} producto{{ product_list|length|pluralize }}</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% comment %}
+PARTE 2 — La portada. Recibe `product_list`.
+
+  1. Hereda de layout.html y rellena el bloque `titulo` («Inicio») y el bloque `content`.
+  2. Recorre `product_list` con {% for %} e incluye _tarjeta.html por cada producto.
+  3. Si no hay productos, muestra «Todavía no hay productos.» con {% empty %}.
+{% endcomment %}
+{% block titulo %}Inicio{% endblock %}
+{% block content %}
+  <div class="row mt-4">
+    {% for prod in product_list %}
+      {% include "_tarjeta.html" %}
+    {% empty %}
+      <p class="col">Todavía no hay productos.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

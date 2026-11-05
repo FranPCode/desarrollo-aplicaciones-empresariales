@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{# Plantilla escrita por un asistente de IA a partir del enunciado. No la edites: es la Parte 4.
+   Para corregirla: python manage.py duelo --iniciar-corregida y edita tienda/corregida/templates/. #}
+
+{% block titulo %}{{ producto.nombre }}{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+  <div class="card-body">
+    <h1 class="card-title h3">{{ producto.nombre }}</h1>
+    <h4>S/ {{ producto.precio|floatformat:"2u" }}</h4>
+    <p>Categoría: <a href="{% url 'categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a></p>
+    {% if producto.descripcion %}
+      {# safe para que se respeten los saltos de línea y el formato que trae la descripción #}
+      <div class="descripcion">{{ producto.descripcion|safe|linebreaks }}</div>
+      <p class="aviso-ia">Descripción escrita por el asistente de IA de la tienda.</p>
+    {% endif %}
+  </div>
+</div>
+<p class="my-4"><a href="{% url 'index' %}">&larr; Volver al inicio</a></p>
+{% endblock %}

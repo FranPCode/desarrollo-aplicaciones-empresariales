@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{# Plantilla escrita por un asistente de IA a partir del enunciado. No la edites: es la Parte 4.
+   Para corregirla: python manage.py duelo --iniciar-corregida y edita tienda/corregida/templates/. #}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block content %}
+<h2 class="my-4">Lo más nuevo</h2>
+<div class="row">
+  {% for prod in product_list %}
+    {% include "_tarjeta.html" %}
+  {% empty %}
+    <p class="col">Todavía no hay productos.</p>
+  {% endfor %}
+</div>
+{% endblock %}
